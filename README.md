@@ -72,8 +72,8 @@ The tracklist file should contain one line per track, formatted as:
 ```
 <timestamp> <track_name>
 ```
-    The timestamp is in the `MM:SS` format.
-    The track name is a string (e.g., `Track Name A`).
+- The timestamp is in the `MM:SS` format.
+- The track name is a string (e.g., `Track Name A`).
 
 Example tracklist format:
 ```
