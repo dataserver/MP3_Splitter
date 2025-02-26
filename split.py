@@ -38,10 +38,10 @@ from pathlib import Path
 
 from pydub import AudioSegment
 
-# Set the FFmpeg binary path for Windows
-os.environ["FFMPEG_BINARY"] = (
-    r"D:\python\mp3_spliter\bin\ffmpeg.exe"  # Adjust for Windows
-)
+# Set the FFmpeg binary path (optional)
+# os.environ["FFMPEG_BINARY"] = (
+#     r"D:\python\mp3_spliter\bin\ffmpeg.exe"  # Adjust for Windows
+# )
 
 
 # Function to convert time string (MM:SS) to milliseconds
@@ -84,17 +84,26 @@ def prompt_ignore_tracks(timestamps: list[tuple[str, str]]) -> list[int]:
         print(f"{i}: {track_name}")
 
     ignore_input = input(
-        "Enter the numbers of tracks to ignore (comma separated, e.g., 2,5,8), or press Enter to skip: "
+        "Enter the numbers of tracks to ignore (comma separated, e.g., 2,5,8 or ranges like 3-6), or press Enter to skip: "
     )
 
     ignore_indices = []
     if ignore_input.strip():
-        ignore_indices = [
-            int(num.strip()) - 1
-            for num in ignore_input.split(",")
-            if num.strip().isdigit()
-        ]
-    return ignore_indices
+        parts = ignore_input.split(",")
+        for part in parts:
+            part = part.strip()
+            if "-" in part:
+                # Handle ranges like 3-6
+                try:
+                    start, end = map(int, part.split("-"))
+                    if start <= end:
+                        ignore_indices.extend(
+                            range(start - 1, end)
+                        )  # Make it zero-indexed
+                except ValueError:
+                    print(f"Invalid range format: {part}")
+            elif part.isdigit():
+                ignore_indices.append(int(part) - 1)  # Make it zero-indexed
 
 
 # Function to split the mp3 file based on timestamps from the text file
