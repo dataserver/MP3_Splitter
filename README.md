@@ -9,6 +9,35 @@ This script allows you to split a large MP3 file into individual tracks based on
 - Automatically saves the split tracks to a chosen directory.
 - Sanitizes track names to create valid filenames.
 
+
+## Usage Case
+
+A common use case for this tool is when you convert a YouTube video to MP3 format and want to split it into individual tracks based on timestamps. Many YouTube videos include a tracklist or timestamp information in their descriptions. This tracklist allows viewers to quickly navigate between different sections of the video.
+
+For example, some music albums or podcasts on YouTube may have the following timestamped description:
+
+```
+00:00 Intro 
+01:30 Track 1 - Song Title 
+05:15 Track 2 - Song Title 
+09:45 Track 3 - Song Title 
+12:00 Outro
+```
+
+After downloading the video as an MP3 file, you can use this script to automatically split the MP3 file into separate tracks based on the provided timestamps. The timestamps in the description, when converted into a tracklist text file (following the format described in the **Tracklist Format** section), can be used to split the MP3 file into individual tracks.
+
+### Example Workflow:
+
+1. **Convert the YouTube video to MP3**: Use any YouTube-to-MP3 converter to get the audio file.
+2. **Create a Tracklist**: Copy the timestamp and track names from the video description and save it in a text file (e.g., `tracklist.txt`).
+3. **Run the MP3 Splitter**: Use the `split.py` script to split the MP3 file using the tracklist.
+
+```bash
+python split.py -i audio.mp3 -t tracklist.txt -o output_directory
+```
+
+
+
 ## Requirements
 
 - `pydub`: A Python package for audio manipulation.
