@@ -137,3 +137,8 @@ Example:
 ```
 Track names are sanitized to ensure they are valid filenames by replacing any invalid characters (e.g., `<>:"/\\|?*`) with underscores.
 
+## License
+
+This project is licensed under the `Unlicense`. You can freely use, modify, and distribute it. For more details, please refer to [The Unlicense](./LICENSE).
+
+
