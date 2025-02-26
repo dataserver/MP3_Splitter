@@ -5,14 +5,14 @@ This script allows you to split a large MP3 file into individual tracks based on
 ## Features
 
 - Split a large MP3 file into individual tracks using timestamps from a tracklist.
-- Optionally ignore specific tracks based on user input.
+- Optionally ignore specific tracks based on user input, including ranges of tracks (e.g., `3-6` to skip tracks 3 to 6).
 - Automatically saves the split tracks to a chosen directory.
 - Sanitizes track names to create valid filenames.
 
 ## Requirements
 
-- **pydub**: A Python package for audio manipulation.
-- **ffmpeg**: A multimedia framework required by pydub for handling MP3 files.
+- `pydub`: A Python package for audio manipulation.
+- [`ffmpeg`](https://www.ffmpeg.org/): A multimedia framework required by pydub for handling MP3 files.
 
 ### Install Dependencies
 
@@ -26,7 +26,7 @@ pip install pydub
 
 To run the script, use the following command in your terminal:
 
-```
+```bash
 python split.py -i <input_mp3_file> -t <tracklist_file> -o <output_directory>
 ```
 
@@ -56,7 +56,7 @@ Example tracklist format:
 ```
 Example
 
-```
+```bash
 python split.py -i large_file.mp3 -t tracklist.txt -o output
 ```
 
@@ -73,12 +73,25 @@ Here is a list of all track names:
 2: Track Name B
 3: Track Name C
 4: Track Name D
-5: Track Name X
+5: Track Name E
+6: Track Name F
+7: Track Name G
+8: Track Name H
+9: Track Name I
 
-Enter the numbers of tracks to ignore (comma separated, e.g., 2,5,8), or press Enter to skip: 
+Enter the numbers of tracks to ignore (comma separated, e.g., 2,5,8 or ranges like 3-6), or press Enter to skip:
+```
+## Input Format for Ignoring Tracks:
+
+- Individual tracks: Enter the track numbers separated by commas (e.g., 2,5,8).
+- Ranges: Specify a range of tracks to ignore (e.g., 3-6 to skip tracks from 3 to 6).
+
+Example input:
+```
+3,5,7-9
 ```
 
-You can specify track numbers to ignore, and they will not be included in the output.
+This will skip tracks 3, 5, and the range from 7 to 9.
 
 ## Output Files
 
