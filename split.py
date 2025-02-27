@@ -104,7 +104,7 @@ def prompt_ignore_tracks(timestamps: list[tuple[str, str]]) -> list[int]:
                     print(f"Invalid range format: {part}")
             elif part.isdigit():
                 ignore_indices.append(int(part) - 1)  # Make it zero-indexed
-
+    return ignore_indices
 
 # Function to split the mp3 file based on timestamps from the text file
 def split_mp3(
